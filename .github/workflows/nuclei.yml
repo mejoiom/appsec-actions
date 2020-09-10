@@ -1,0 +1,19 @@
+name: "DAST with Nuclei"
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 10 * * *"
+
+jobs:
+  worker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: secopslab/nuclei-action@v1
+        with:
+          urls-txt: ".github/nuclei.txt"
+          custom-templates: ".github/custom-templates/"
+          slack-token: ${{ secrets.SLACK_TOKEN }}
+          slack-channel: ${{ secrets.SLACK_CHANNEL_NUCLEI }}
+          dd-api-key: ${{ secrets.DD_API_KEY }}
