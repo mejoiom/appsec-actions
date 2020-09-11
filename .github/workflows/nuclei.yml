@@ -20,6 +20,11 @@ jobs:
           slack-channel: ${{ secrets.SLACK_CHANNEL_NUCLEI }}
           dd-api-key: ${{ secrets.DD_API_KEY }}
 
+  logger:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
       - uses: actions/upload-artifact@v2
         with:
           name: logfile
