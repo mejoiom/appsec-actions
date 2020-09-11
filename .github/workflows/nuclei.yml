@@ -22,5 +22,5 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: my-artifact
+          name: logfile
           path: ${{ steps.nuclei.outputs.logfile }}
