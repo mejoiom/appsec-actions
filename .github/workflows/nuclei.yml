@@ -15,14 +15,14 @@ jobs:
         with:
           urls-txt: ".github/nuclei.txt"
           custom-templates: ".github/custom-templates/"
-          user-agent: "nuclei wapp scan"
+          user-agent: "Explore https://github.com/secopslab/"
 
       - uses: actions/upload-artifact@v2
         with:
           name: nuclei.log
           path: nuclei.log
 
-      - uses: secopslab/appsec-etl@master
+      - uses: secopslab/appsec-etl@v1
         with:
           tool: nuclei
           slack-token: ${{ secrets.SLACK_TOKEN }}
