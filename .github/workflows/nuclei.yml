@@ -11,16 +11,20 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: nuclei
-        uses: secopslab/nuclei-action@v1
+      - uses: secopslab/nuclei-action@v1
         with:
           urls-txt: ".github/nuclei.txt"
           custom-templates: ".github/custom-templates/"
-          slack-token: ${{ secrets.SLACK_TOKEN }}
-          slack-channel: ${{ secrets.SLACK_CHANNEL_NUCLEI }}
-          dd-api-key: ${{ secrets.DD_API_KEY }}
+          user-agent: "nuclei wapp scan"
 
       - uses: actions/upload-artifact@v2
         with:
           name: nuclei.log
           path: nuclei.log
+
+      - uses: secopslab/appsec-etl@master
+        with:
+          transform: nuclei
+          slack-token: ${{ secrets.SLACK_TOKEN }}
+          slack-channel: ${{ secrets.SLACK_CHANNEL_NUCLEI }}
+          dd-api-key: ${{ secrets.DD_API_KEY }}
