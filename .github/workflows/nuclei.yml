@@ -24,7 +24,7 @@ jobs:
 
       - uses: secopslab/appsec-etl@master
         with:
-          transform: nuclei
+          tool: nuclei
           slack-token: ${{ secrets.SLACK_TOKEN }}
           slack-channel: ${{ secrets.SLACK_CHANNEL_NUCLEI }}
           dd-api-key: ${{ secrets.DD_API_KEY }}
