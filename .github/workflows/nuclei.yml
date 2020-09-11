@@ -10,10 +10,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: secopslab/nuclei-action@v1
+
+      - name: nuclei
+        uses: secopslab/nuclei-action@v1
         with:
           urls-txt: ".github/nuclei.txt"
           custom-templates: ".github/custom-templates/"
           slack-token: ${{ secrets.SLACK_TOKEN }}
           slack-channel: ${{ secrets.SLACK_CHANNEL_NUCLEI }}
           dd-api-key: ${{ secrets.DD_API_KEY }}
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: ${{ steps.nuclei.outputs.logfile }}
