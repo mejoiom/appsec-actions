@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: secopslab/codeql-action@v1
+      - uses: secopslab/codeql-action@main
         with:
           language: "javascript"
           slack-token: ${{ secrets.SLACK_TOKEN }}
